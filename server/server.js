@@ -13,7 +13,18 @@ var io = socketIO(server);
 app.use(express.static(publicPath));
 
 io.on('connection', (socket)=>{
-    console.log('Incoming User')
+    console.log('Incoming User');
+
+    socket.emit('newMessage',{
+        from: 'Admin',
+        text: 'Welcome noob'
+    });
+
+    socket.broadcast.emit('newMessage',{
+        from: 'Admin',
+        text: 'Big Noob Joined ',
+        createdAt: new Date().getTime()
+    })
 
     // socket.emit('newMessage', {
     //     from:'mike@leesin.com',
@@ -22,7 +33,12 @@ io.on('connection', (socket)=>{
 
     socket.on('createMessage', (message)=>{
         console.log('createMessage', message);
-        io.emit('newMessage',{
+        // io.emit('newMessage',{
+        //     from: message.from,
+        //     text: message.text,
+        //     createdAt: new Date().getTime()
+        // })
+        socket.broadcast.emit('newMessage',{
             from: message.from,
             text: message.text,
             createdAt: new Date().getTime()
