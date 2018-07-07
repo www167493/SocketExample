@@ -16,3 +16,10 @@ socket.on('disconnect', function(){
 socket.on('newMessage',function(message){
     console.log('newMessage',message)
 })
+
+socket.emit('createMessage',{
+    from:'Lumpy',
+    text: 'High'
+},function(data){
+    console.log('A message is created',data)
+})
