@@ -20,6 +20,10 @@ io.on('connection', (socket)=>{
 
     socket.broadcast.emit('newMessage',generateMessage('Admin','Big Noob Joined '))
 
+    socket.on('join',(params, callback)=>{
+        
+    })
+
     socket.on('createMessage', (message, callback)=>{
         console.log('createMessage', message);
 

@@ -20,6 +20,16 @@ function scrollToBottom(){
 
 socket.on('connect', function(){
     console.log('Connected to A Sercer');
+
+    var params = jQuery.deparam(window.location.search);
+
+    socket.emit('join',params, function(){
+        if(err){
+
+        }else{
+            
+        }
+    })
 });
 
 socket.on('disconnect', function(){
